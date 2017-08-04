@@ -134,7 +134,7 @@ public class SimpleUpdateManager {
      * @return
      */
     private void getQQMsg(){
-        url_VersionDownURL = HtmlUtils.getInstance().getHtmlMsg(urlSource,"data-apkUrl=","\" appname=");
+        url_VersionDownURL = HtmlUtils.getInstance().getHtmlMsg(urlSource,"data-apkUrl=\"","\" appname=");
         String[] versionArray = url_VersionDownURL.split("_");
         url_VersionName = versionArray[1];
         url_VersionCode = Integer.parseInt(versionArray[versionArray.length-1].split("\\.")[0]);
@@ -177,6 +177,7 @@ public class SimpleUpdateManager {
         builder.setPositiveButton("更新", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Log.e(TAG, "onClick: "+ url_VersionDownURL);
                 downloadApkId = UpdateUtil.getInstance().startDownload(mContext, url_VersionDownURL, Save_Apk, "正在下载更新", "请稍后");
             }
         });
